@@ -2,13 +2,9 @@ const express = require("express")
 const connectDB = require("./config/database")
 const User=require("./models/user")
 const app =express()
-// 
+    app.use(express.json())
 app.post("/signup", async (req, res) => {
-  const user = new User({
-    firstName: "virat",
-    lastName: "kohli",
-    age: 29,
-  });
+   const user = new User(req.body);
 
   try {
     await user.save();
@@ -16,6 +12,18 @@ app.post("/signup", async (req, res) => {
   } catch (err) {
     res.status(400).send(err.message);
   }
+//   const user = new User({
+//     firstName: "virat",
+//     lastName: "kohli",
+//     age: 29,
+//   });
+
+//   try {
+//     await user.save();
+//     res.send("Added successfully");
+//   } catch (err) {
+//     res.status(400).send(err.message);
+//   }
 });
 
 
