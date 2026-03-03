@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt");
 const mongoose = require("mongoose");
 const validator = require("validator");
 const userSchema = new mongoose.Schema({
-  firstName: { type: String,required:true ,minlength: 4},
+  firstName: { type: String,required:true ,minLength: 4,maxLength:50},
   lastName: { type: String, },
   emailId: { type: String,
     required:true,
@@ -40,6 +40,7 @@ const userSchema = new mongoose.Schema({
   about: { type: String,default:"This is default about a user"},
   skills: { type: [String] },
 },{ timestamps: true });
+
 
 userSchema.methods.getJWT =  async function(){
   const user = this;

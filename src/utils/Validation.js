@@ -9,4 +9,11 @@ throw new Error("Name is not Valid")
         throw new Error("Please enter a strong password")
     }
 }
-module.exports={ValidationSignUpData}
+
+const ValidateEditProfileData = (req) =>{
+const allowedEditFields = ["firstName","lastName","photoUrl","emailId","gender","age","about","skills"]
+const isEditAllowed = Object.keys(req.body).every(field => allowedEditFields.includes(field))
+return isEditAllowed
+}
+
+module.exports={ValidationSignUpData,ValidateEditProfileData}
