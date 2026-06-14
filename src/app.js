@@ -1,9 +1,11 @@
 const express = require("express");
+const cors = require("cors");
 const jwt = require("jsonwebtoken")
 const connectDB = require("./config/database");
 var cookieParser = require('cookie-parser')
 // const { ValidationSignUpData } = require("./utils/Validation");
 const app = express();
+app.use(cors({ origin: "http://localhost:5173", credentials: true }));
 app.use(express.json());
 app.use(cookieParser())
 const User = require("./models/user");
